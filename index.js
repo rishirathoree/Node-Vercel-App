@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use("/todos", todosRouter);
+app.use("/", todosRouter);
 
 mongoose
   .connect(
