@@ -4,10 +4,17 @@ import todosRouter from "./Routes/Todos.js";
 import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+import path from "path";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const loc = path.join(__dirname,'uploads')
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use("/", todosRouter);
+app.use('/images',express.static(loc))
 
 mongoose
   .connect(
