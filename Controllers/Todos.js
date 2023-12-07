@@ -25,6 +25,21 @@ export const GetTodos = async(req,res) => {
     }
 }
 
+
+
+export const GetSingleDetails = async (req, res) => {
+    try {
+        const getSingleTodo = await Todos.findOne({ _id: req.params.id });
+
+        if (!getSingleTodo) {
+            return res.status(200).json({ success:0,message: 'Todo not found, not sending the correct _id key value' });
+        }
+
+        res.status(200).json({msg:`succesfully got the todos with id ${req.params.id}`,success:1, todo:getSingleTodo});
+    } catch (error) {
+        res.status(200).json({ success:0,message: 'Internal Server Error' });
+    }
+};
 export const UpdateTodos = async (req,res) => {
     const { completed,id } = req.body
     try {
